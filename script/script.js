@@ -23,6 +23,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
         }
 
+        
         function updateClock(){
         let timer = getTimeRemaining();
         
