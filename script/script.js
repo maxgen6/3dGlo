@@ -23,24 +23,21 @@ window.addEventListener('DOMContentLoaded', function(){
 
         }
 
-        
-        function updateClock(){
-        let timer = getTimeRemaining();
+        const interval = setInterval(() => {
+            let timer = getTimeRemaining();
         
         timer.hours > 9 ?   timerHours.textContent = timer.hours : timerHours.textContent = '0' + timer.hours;
         timer.minutes > 9 ?  timerMinutes.textContent = timer.minutes : timerMinutes.textContent = '0' + timer.minutes;
         timer.seconds > 9 ? timerSeconds.textContent = timer.seconds : timerSeconds.textContent = '0' + timer.seconds;
 
-        if(timer.timeRemaining > 0){
-        setInterval(updateClock, 1000);
-        } else {
+        if(timer.timeRemaining < 0){
+            clearInterval(interval);
             timerHours.textContent = '00';
             timerMinutes.textContent = '00';
             timerSeconds.textContent = '00';
+
         }
-    }
-        updateClock();
-        
+        }, 1000); 
     }
 
     countTimer('27 april 2020');
