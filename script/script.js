@@ -80,14 +80,20 @@ window.addEventListener('DOMContentLoaded', function(){
             popUpBtn = document.querySelectorAll('.popup-btn'),
             popUpClose = document.querySelector('.popup-close');
 
+            let opacity = 0;
+            popup.style.opacity = opacity;
         popUpBtn.forEach((elem) => {
             elem.addEventListener('click', function animation() {
-                let counter;
-                // popup.style.display = 'block'; 
-                popup.style.display = counter++ + 'px';
-                if(counter < 350){
-                    setTimeout(animation, 1000);
-                } 
+                popup.style.display = 'block'; 
+                opacity += 0.1;
+                popup.style.opacity = opacity;
+                
+                if(opacity < 1){                   
+                    setTimeout(animation, 100);
+                    console.log(opacity);
+                    
+                }
+                 
             });
         });
 
