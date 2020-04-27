@@ -81,8 +81,13 @@ window.addEventListener('DOMContentLoaded', function(){
             popUpClose = document.querySelector('.popup-close');
 
         popUpBtn.forEach((elem) => {
-            elem.addEventListener('click', () => {
-                
+            elem.addEventListener('click', function animation() {
+                let counter;
+                // popup.style.display = 'block'; 
+                popup.style.display = counter++ + 'px';
+                if(counter < 350){
+                    setTimeout(animation, 1000);
+                } 
             });
         });
 
