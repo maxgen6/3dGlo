@@ -89,10 +89,10 @@ window.addEventListener('DOMContentLoaded', function(){
                 opacity += 0.1;
                 popup.style.opacity = opacity;          
                 if(opacity < 1){                   
-                    setTimeout(animation, 100); 
+                    setTimeout(animation, 20); 
                 }
             } else{
-                popup.style.display = 'block'; 
+                popup.style.opacity = 1; 
 
             }
                  
@@ -101,6 +101,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
         popUpClose.addEventListener('click', () => {
             popup.style.display = 'none';
+            return (opacity = 0);
         });
 
     };
