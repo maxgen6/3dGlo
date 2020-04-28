@@ -60,13 +60,28 @@ window.addEventListener('DOMContentLoaded', function(){
             // }
             menu.classList.toggle('active-menu');
         };
-        btnMenu.addEventListener('click', handlerMenu);
-        closeBtn.addEventListener('click', handlerMenu);
+        // btnMenu.addEventListener('click', handlerMenu);
+        // closeBtn.addEventListener('click', handlerMenu);
 
-        menuItems.forEach((elem) => {
-            elem.addEventListener('click', handlerMenu)
+        // menuItems.forEach((elem) => {
+        //     elem.addEventListener('click', handlerMenu)
+        // });
+
+        btnMenu.addEventListener('click', (event) => {
+            let target = event.target;
+                target = target.closest('menu');
+            if(!target){
+                handlerMenu();
+            } 
+            
         });
-
+        closeBtn.addEventListener('click', (event) => {
+            let target = event.target;
+                target = target.closest('close-btn');
+                if(!target){
+                    menu.classList.remove('active-menu');
+                }
+        })
 
     };
 
@@ -111,7 +126,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     popup.style.display = 'none';
                 }
             };
-        })
+        });
 
     };
 
