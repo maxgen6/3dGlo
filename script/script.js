@@ -84,22 +84,24 @@ window.addEventListener('DOMContentLoaded', function(){
             popup.style.opacity = opacity;
         popUpBtn.forEach((elem) => {
             elem.addEventListener('click', function animation() {
+                if(screen.width > 768){
                 popup.style.display = 'block'; 
                 opacity += 0.1;
-                popup.style.opacity = opacity;
-                
+                popup.style.opacity = opacity;          
                 if(opacity < 1){                   
-                    setTimeout(animation, 100);
-                    console.log(opacity);
-                    
+                    setTimeout(animation, 100); 
                 }
+            } else{
+                popup.style.display = 'block'; 
+
+            }
                  
             });
         });
 
         popUpClose.addEventListener('click', () => {
             popup.style.display = 'none';
-        })
+        });
 
     };
 
