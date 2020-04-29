@@ -184,7 +184,8 @@ window.addEventListener('DOMContentLoaded', function(){
         };
 
         const nextSlide = (elem, index, strClass) => {
-            elem[index].classList.add('strClass');        }
+            elem[index].classList.add('strClass');        
+        };
 
         const autoPlaySlide = () => {
 
@@ -199,7 +200,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
         };
 
-        const startSlide = (time = 3000) => {
+        const startSlide = (time = 30000) => {
             interval = setInterval(autoPlaySlide, time);
 
         };
@@ -213,18 +214,18 @@ window.addEventListener('DOMContentLoaded', function(){
             
             let target = event.target;
 
-            if(!target.mathes('.portfolio-btn, .dot')){
+            if(!target.matсhes('.portfolio-btn, .dot')){
                 return;
             }
 
             prevSlide(slide, currentSlide, 'portfolio-item-active');
             prevSlide(dot, currentSlide, 'dot-active');
 
-            if(target.mathes('#arrow-right')){
+            if(target.matсhes('#arrow-right')){
                 currentSlide++;
-            } else if(target.mathes('#arrow-left')){
+            } else if(target.matсhes('#arrow-left')){
                 currentSlide--;
-            } else if(target.mathes('.dot')){
+            } else if(target.matсhes('.dot')){
                 dot.forEach((elem, index) => {
                     if(elem === target){
                         currentSlide = index;
@@ -245,15 +246,15 @@ window.addEventListener('DOMContentLoaded', function(){
         });
 
         slider.addEventListener('mouseover', (event) => {
-            if(event.target.mathes('.portfolio-btn') || 
-            event.target.mathes('.dot')){
+            if(event.target.matсhes('.portfolio-btn') || 
+            event.target.matсhes('.dot')){
                 stopSlide();
             }
         });
 
         slider.addEventListener('mouseout', (event) => {
-            if(event.target.mathes('.portfolio-btn') || 
-            event.target.mathes('.dot')){
+            if(event.target.matсhes('.portfolio-btn') || 
+            event.target.matсhes('.dot')){
                 startSlide();
             }
         });
