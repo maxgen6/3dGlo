@@ -189,7 +189,7 @@ window.addEventListener('DOMContentLoaded', function(){
         };     
         const dot = document.querySelectorAll('.dot');
 
-        
+
         let currentSlide = 0,
             interval;
 
@@ -214,7 +214,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
         };
 
-        const startSlide = (time = 30000 ) => {
+        const startSlide = (time = 3000) => {
             interval = setInterval(autoPlaySlide, time);
 
         };
