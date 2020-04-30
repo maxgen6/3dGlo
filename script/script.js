@@ -132,6 +132,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
     togglePopUp();
 
+    
     //табы
 
     const tabs = () => {
