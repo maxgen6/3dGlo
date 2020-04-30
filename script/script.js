@@ -154,7 +154,6 @@ window.addEventListener('DOMContentLoaded', function(){
         tabHeader.addEventListener('click', (event) => {
             let target = event.target;
                 target = target.closest('.service-header-tab');
-                console.log(target);
             
             if(target){                
                 tab.forEach((item, i) => {
@@ -176,7 +175,6 @@ window.addEventListener('DOMContentLoaded', function(){
             // dot = document.querySelectorAll('.dot'),
             slider = document.querySelector('.portfolio-content'),
             portfolioDots = document.querySelector('.portfolio-dots');
-            console.log('portfolioDots: ', portfolioDots);
            
         let couter = 0;
             while(couter < slide.length){
@@ -184,8 +182,7 @@ window.addEventListener('DOMContentLoaded', function(){
             const li = document.createElement('li');
             li.classList.add('dot');
             portfolioDots.appendChild(li);
-            console.log('portfolioDots: ', portfolioDots);
-            console.log(li); 
+             
         };     
         const dot = document.querySelectorAll('.dot');
 
