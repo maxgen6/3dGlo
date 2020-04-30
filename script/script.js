@@ -277,5 +277,40 @@ window.addEventListener('DOMContentLoaded', function(){
     };
     slider();
 
+    //фото
+
+    const photoCommand = () => {
+        let photo = document.getElementById('command'),
+            img = document.querySelectorAll('.command__photo');
+            
+            for(let i = 0; i < img.length; i++){
+            img[i].addEventListener('mouseenter', (event) => {
+            let photoId = event.target.src;
+            event.target.src = event.target.dataset.img;
+            img[i].addEventListener('mouseleave', (event) => {
+                event.target.src = photoId;
+            });
+        });
+    };
+
+    };
+    photoCommand();
+
+    //калькулятор
+
+    const calculator = () => {
+        let calcItem = document.querySelectorAll('.calc-item');
+
+        for(let i = 1; i < calcItem.length; i++){
+            calcItem[i].addEventListener('input', () => {
+                calcItem[i].value = calcItem[i].value.replace(/\D/g, '');
+            });
+        };
+
+        // console.log(calcItem);
+
+
+    };
+    calculator();
 
 });
