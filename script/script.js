@@ -361,17 +361,18 @@ window.addEventListener('DOMContentLoaded', function(){
             successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
         
         const form = document.getElementById('form1'),
+             phone = form.querySelector('.form-phone'),
              form1 = document.getElementById('form3'),
              form2 = document.getElementById('form2'),
              statusMessage = document.createElement('div');
         statusMessage.style.cssText = 'font-size: 2rem;';
-
+        
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             form.appendChild(statusMessage);
             statusMessage.textContent = loadMessage;
-
             const formData = new FormData(form);
+            
         
             let body = {};
             // for(let value of formData.entries()){
@@ -387,7 +388,7 @@ window.addEventListener('DOMContentLoaded', function(){
                 statusMessage.textContent = errorMessage;
                 console.log(error);
             });
-        
+            // console.log(phone.va);
         });
         
         form1.addEventListener('submit', (event) => {
@@ -425,28 +426,28 @@ window.addEventListener('DOMContentLoaded', function(){
             }, (error) => {
                 statusMessage.textContent = errorMessage;
             });
+            
         });
 
         const postData = (body, outputData, errorData) => {
             const request = new XMLHttpRequest();
-            request.open('POST', './server.php');
-            request.setRequestHeader('Content-Type', 'application/json');
+           
             request.addEventListener('readystatechange', () => {
                 if(request.readyState !== 4){
                     return;
                 }
                 if(request.status === 200){
                     outputData();
-                    document.querySelectorAll('.form-name').textContent = '';        
-                    document.querySelectorAll('.form-phone').textContent = '';        
-                    document.querySelectorAll('.form-email').textContent = '';        
-
+                    form.reset();
+                    form1.reset();
+                    form2.reset();
                 } else {
                     errorData(request.status);
 
                 }
             });
-
+            request.open('POST', './server.php');
+            request.setRequestHeader('Content-Type', 'application/json');
             request.send(JSON.stringify(body));
         };
 
