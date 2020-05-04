@@ -338,12 +338,6 @@ window.addEventListener('DOMContentLoaded', function(){
                 
                 // console.log(total);
             };
-            
-           
-            
-            
-
-
             totalValue.textContent = total;
         };
         
@@ -378,11 +372,34 @@ window.addEventListener('DOMContentLoaded', function(){
              form2 = document.getElementById('form2'),
              statusMessage = document.createElement('div');
         statusMessage.style.cssText = 'font-size: 2rem;';
-        
+        const validate = () => {
+            let formName = document.querySelectorAll('.form-name'),
+                formMess = document.querySelectorAll('.mess'),
+                formPhone = document.querySelectorAll('.form-phone');
+
+                for(let i = 0; i < formPhone.length; i++){
+                    formPhone[i].addEventListener('input', () => {
+                    formPhone[i].value = formPhone[i].value.replace(/\D/g,'');
+                });
+
+                for(let i = 0; i < formName.length; i++){
+                    formName[i].addEventListener('input', () => {
+                        formName[i].value = formName[i].value.replace(/\w/gi, '');
+                    });
+                }
+                for(let i = 0; i < formMess.length; i++){
+                    formMess[i].addEventListener('input', () => {
+                        formMess[i].value = formMess[i].value.replace(/\w/gi, '');
+                    })
+                }
+                }
+        };
+        validate();
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             form.appendChild(statusMessage);
             statusMessage.textContent = loadMessage;
+            
             const formData = new FormData(form);
             
         
@@ -461,11 +478,13 @@ window.addEventListener('DOMContentLoaded', function(){
             request.open('POST', './server.php');
             request.setRequestHeader('Content-Type', 'application/json');
             request.send(JSON.stringify(body));
+            // console.log(form.querySelector('.form-phone'));   
         };
 
 
-        
-    console.log(document.querySelectorAll('.form-name'));
+             
+
+    // console.log(document.querySelectorAll('.form-phone'));
     };
 
     sendForm();
