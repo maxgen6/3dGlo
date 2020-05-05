@@ -410,6 +410,7 @@ window.addEventListener('DOMContentLoaded', function(){
             formData.forEach((val, key) => {
                 body[key] = val;
             });
+            
             postData(body, () => {
                 statusMessage.textContent = successMessage;
 
@@ -417,7 +418,6 @@ window.addEventListener('DOMContentLoaded', function(){
                 statusMessage.textContent = errorMessage;
                 console.log(error);
             });
-            // console.log(phone.va);
         });
         
         form1.addEventListener('submit', (event) => {
@@ -458,7 +458,9 @@ window.addEventListener('DOMContentLoaded', function(){
             
         });
 
-        const postData = (body, outputData, errorData) => {
+        const postData = (body) => {
+            let promise = new Promise((resolve, reject) => {
+            
             const request = new XMLHttpRequest();
            
             request.addEventListener('readystatechange', () => {
@@ -466,23 +468,26 @@ window.addEventListener('DOMContentLoaded', function(){
                     return;
                 }
                 if(request.status === 200){
-                    outputData();
+                    // outputData();
+                    resolve(statusMessage);
+                    
                     form.reset();
                     form1.reset();
                     form2.reset();
                 } else {
-                    errorData(request.status);
+                    reject(statusMessage);
 
                 }
             });
             request.open('POST', './server.php');
             request.setRequestHeader('Content-Type', 'application/json');
             request.send(JSON.stringify(body));
+        });
             // console.log(form.querySelector('.form-phone'));   
+            return promise .then(result => statusMessage.textContent = successMessage)
+                            .catch(error => statusMessage.textContent = errorMessage);
+
         };
-
-
-             
 
     // console.log(document.querySelectorAll('.form-phone'));
     };
