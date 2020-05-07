@@ -411,10 +411,14 @@ window.addEventListener('DOMContentLoaded', function(){
                 body[key] = val;
             });
             
-            postData(body, () => {
+            postData(body)
+            .then((response) => {
+                if(response.status !== 200){
+                    throw new Error('status network not 200');
+                }
                 statusMessage.textContent = successMessage;
-
-            }, (error) => {
+            })
+            .catch((error) => {
                 statusMessage.textContent = errorMessage;
                 console.log(error);
             });
@@ -431,10 +435,16 @@ window.addEventListener('DOMContentLoaded', function(){
             formData.forEach((val, key) => {
                 body[key] = val;
             });
-            postData(body, () => {
+            postData(body)
+            .then((response) => {
+                if(response.status !== 200){
+                    throw new Error('status network not 200');
+                }
                 statusMessage.textContent = successMessage;
-            }, (error) => {
+            })
+            .catch((error) => {
                 statusMessage.textContent = errorMessage;
+                console.log(error);
             });
 
         });
@@ -450,42 +460,57 @@ window.addEventListener('DOMContentLoaded', function(){
             formData.forEach((val, key) => {
                 body[key] = val;
             });
-            postData(body, () => {
-                statusMessage.textContent = successMessage;
-            }, (error) => {
-                statusMessage.textContent = errorMessage;
-            });
+            postData(body)
+                .then((response) => {
+                    if(response.status !== 200){
+                        throw new Error('status network not 200');
+                    }
+                    statusMessage.textContent = successMessage;
+                })
+                .catch((error) => {
+                    statusMessage.textContent = errorMessage;
+                    console.log(error);
+                });
             
         });
 
         const postData = (body) => {
-            let promise = new Promise((resolve, reject) => {
-            
-            const request = new XMLHttpRequest();
-           
-            request.addEventListener('readystatechange', () => {
-                if(request.readyState !== 4){
-                    return;
-                }
-                if(request.status === 200){
-                    // outputData();
-                    resolve(statusMessage);
-                    
-                    form.reset();
-                    form1.reset();
-                    form2.reset();
-                } else {
-                    reject(statusMessage);
-
-                }
+            return fetch('./server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body),
+                credentials: 'include'
             });
-            request.open('POST', './server.php');
-            request.setRequestHeader('Content-Type', 'application/json');
-            request.send(JSON.stringify(body));
-        });
-            // console.log(form.querySelector('.form-phone'));   
-            return promise .then(result => statusMessage.textContent = successMessage)
-                            .catch(error => statusMessage.textContent = errorMessage);
+            
+            
+        //     let promise = new Promise((resolve, reject) => {            
+        //     const request = new XMLHttpRequest();
+           
+        //     request.addEventListener('readystatechange', () => {
+        //         if(request.readyState !== 4){
+        //             return;
+        //         }
+        //         if(request.status === 200){
+        //             // outputData();
+        //             resolve(statusMessage);
+                    
+        //             form.reset();
+        //             form1.reset();
+        //             form2.reset();
+        //         } else {
+        //             reject(statusMessage);
+
+        //         }
+        //     });
+        //     request.open('POST', './server.php');
+        //     request.setRequestHeader('Content-Type', 'application/json');
+        //     request.send(JSON.stringify(body));
+        // });
+        //     // console.log(form.querySelector('.form-phone'));   
+        //     return promise .then(resolve => statusMessage.textContent = successMessage)
+        //                     .catch(error => statusMessage.textContent = errorMessage);
 
         };
 
