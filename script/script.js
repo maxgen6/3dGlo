@@ -366,10 +366,7 @@ window.addEventListener('DOMContentLoaded', function(){
             loadMessage = 'Загрузка...',
             successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
         
-        const form = document.getElementById('form1'),
-             phone = form.querySelector('.form-phone'),
-             form1 = document.getElementById('form3'),
-             form2 = document.getElementById('form2'),
+        const forms = document.querySelectorAll('form'),
              statusMessage = document.createElement('div');
         statusMessage.style.cssText = 'font-size: 2rem;';
         const validate = () => {
@@ -395,72 +392,27 @@ window.addEventListener('DOMContentLoaded', function(){
                 }
         };
         validate();
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            form.appendChild(statusMessage);
-            statusMessage.textContent = loadMessage;
-            
-            const formData = new FormData(form);
-            
         
-            let body = {};
-            // for(let value of formData.entries()){
-            //     body[value[0]] = value[1];
-            // }
-            formData.forEach((val, key) => {
-                body[key] = val;
-            });
-            
-            postData(body)
-            .then((response) => {
-                if(response.status !== 200){
-                    throw new Error('status network not 200');
-                }
-                statusMessage.textContent = successMessage;
-            })
-            .catch((error) => {
-                statusMessage.textContent = errorMessage;
-                console.log(error);
-            });
-        });
         
-        form1.addEventListener('submit', (event) => {
-            event.preventDefault();
-            form1.appendChild(statusMessage);
-            statusMessage.textContent = loadMessage;
-            statusMessage.style.cssText = 'font-size: 2rem; color: white;';
-            const formData = new FormData(form1);
-            let body = {};
-             
-            formData.forEach((val, key) => {
-                body[key] = val;
-            });
-            postData(body)
-            .then((response) => {
-                if(response.status !== 200){
-                    throw new Error('status network not 200');
-                }
-                statusMessage.textContent = successMessage;
-            })
-            .catch((error) => {
-                statusMessage.textContent = errorMessage;
-                console.log(error);
-            });
-
-        });
-
-        form2.addEventListener('submit', (event) => {
-            event.preventDefault();
-            form2.appendChild(statusMessage);
-            statusMessage.textContent = loadMessage;
-            statusMessage.style.cssText = 'font-size: 2rem; color: white;';
-            const formData = new FormData(form2);
-            let body = {};
-
-            formData.forEach((val, key) => {
-                body[key] = val;
-            });
-            postData(body)
+        forms.forEach(form => {
+            validate(form);
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                form.appendChild(statusMessage);
+                statusMessage.textContent = loadMessage;
+                
+                const formData = new FormData(form);
+                
+            
+                let body = {};
+                // for(let value of formData.entries()){
+                //     body[value[0]] = value[1];
+                // }
+                formData.forEach((val, key) => {
+                    body[key] = val;
+                });
+                
+                postData(body)
                 .then((response) => {
                     if(response.status !== 200){
                         throw new Error('status network not 200');
@@ -471,7 +423,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     statusMessage.textContent = errorMessage;
                     console.log(error);
                 });
-            
+            });
         });
 
         const postData = (body) => {
