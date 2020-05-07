@@ -1,4 +1,3 @@
-window.addEventListener('DOMContentLoaded', function(){
     
     
  import countTimer from './modules/countTimer';
@@ -40,4 +39,3 @@ window.addEventListener('DOMContentLoaded', function(){
     //send-ajax-form   
     sendForm();
 
-});
