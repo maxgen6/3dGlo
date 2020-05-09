@@ -1,7 +1,7 @@
+'use strict';
 
 const slider = () => {
     const slide = document.querySelectorAll('.portfolio-item'),
-        btn = document.querySelectorAll('.portfolio-btn'),
         slider = document.querySelector('.portfolio-content'),
         portfolioDots = document.querySelector('.portfolio-dots');
        
@@ -11,7 +11,7 @@ const slider = () => {
         const li = document.createElement('li');
         li.classList.add('dot');
         portfolioDots.appendChild(li);
-             };     
+             }     
     const dot = document.querySelectorAll('.dot');
 
 
@@ -74,7 +74,7 @@ const slider = () => {
    
         if(currentSlide >= slide.length){
             currentSlide = 0;
-        };
+        }
 
         if(currentSlide < 0){
             currentSlide = slide.length - 1;

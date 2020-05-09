@@ -1,9 +1,10 @@
+'use strict';
+
 const toggleMenu = () => {
 
     const btnMenu = document.querySelector('.menu'),
         menu = document.querySelector('menu'),
-        closeBtn = document.querySelector('.close-btn'),
-        menuItems = menu.querySelectorAll('ul>li');
+        closeBtn = document.querySelector('.close-btn');
         
     const handlerMenu = () => {
         // if(!menu.style.transform || menu.style.transform === `translate(-100%) `){
