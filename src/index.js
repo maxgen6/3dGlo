@@ -13,7 +13,7 @@
  
  
     //Tmer
-    countTimer('11 may 2020');
+    countTimer('12 may 2020');
     // setInterval(countTimer, 1000, '27 april 2020');
 
     //меню
