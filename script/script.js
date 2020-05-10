@@ -40,7 +40,7 @@ window.addEventListener('DOMContentLoaded', function(){
         }, 1000); 
     }
 
-    countTimer('27 april 2020');
+    countTimer('11 may 2020');
     // setInterval(countTimer, 1000, '27 april 2020');
 
 
@@ -50,7 +50,10 @@ window.addEventListener('DOMContentLoaded', function(){
         const btnMenu = document.querySelector('.menu'),
             menu = document.querySelector('menu'),
             closeBtn = document.querySelector('.close-btn'),
-            menuItems = menu.querySelectorAll('ul>li');
+            ulElem = menu.querySelector('ul') ;
+        
+       
+        console.log(ulElem);
             
         const handlerMenu = () => {
             // if(!menu.style.transform || menu.style.transform === `translate(-100%) `){
@@ -82,7 +85,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     menu.classList.remove('active-menu');
                 }
         })
-
+        ulElem.addEventListener('click', () => menu.classList.remove('active-menu'));
     };
 
     toggleMenu();
