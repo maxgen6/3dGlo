@@ -4,8 +4,11 @@ const toggleMenu = () => {
 
     const btnMenu = document.querySelector('.menu'),
         menu = document.querySelector('menu'),
-        closeBtn = document.querySelector('.close-btn');
+        closeBtn = document.querySelector('.close-btn'),
+        ulElem = menu.querySelector('ul') ;
         
+       
+        console.log(ulElem);
     const handlerMenu = () => {
         // if(!menu.style.transform || menu.style.transform === `translate(-100%) `){
         //     menu.style.transform = `translate(0)`;
@@ -27,7 +30,6 @@ const toggleMenu = () => {
         if(!target){
             handlerMenu();
         } 
-        
     });
     closeBtn.addEventListener('click', (event) => {
         let target = event.target;
@@ -36,7 +38,6 @@ const toggleMenu = () => {
                 menu.classList.remove('active-menu');
             }
     });
-
 };
 
 export default toggleMenu;
